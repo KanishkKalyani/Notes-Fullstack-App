@@ -1,0 +1,133 @@
+.add-note-container {
+  width: 100%;
+  height: 30%;
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.enter-text {
+  width: 40%;
+  height: 40%;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 10px 20px grey, 0 6px 6px lightslategray;
+  border-radius: 15px;
+}
+
+.save-button {
+  width: 100px;
+  background-color: #44c767;
+  border-radius: 28px;
+  border: 1px solid #18ab29;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 8px 8px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2f6627;
+  margin: 3px;
+}
+
+.edit-button {
+  width: 60px;
+  background-color: #f4f756;
+  border-radius: 28px;
+  border: 1px solid #18ab29;
+  cursor: pointer;
+  color: black;
+  font-size: 14px;
+  padding: 8px 8px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2f6627;
+  margin: 3px;
+}
+
+.delete-button {
+  width: 60px;
+  background-color: #ff7676;
+  border-radius: 28px;
+  border: 1px solid #18ab29;
+  cursor: pointer;
+  color: black;
+  font-size: 14px;
+  padding: 8px 8px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2f6627;
+  margin: 3px;
+}
+
+.save-button:hover {
+  background-color: #5cbf2a;
+}
+
+.edit-button:hover {
+  background-color: #ffee00;
+}
+
+.delete-button:hover {
+  background-color: #ff0000;
+}
+
+.save-button:active {
+  position: relative;
+  top: 1px;
+}
+
+.edit-delete-wrapper {
+  display: flex;
+}
+
+.current-notes-body {
+  width: 100%;
+  height: 70%;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.archive-note-with-buttons {
+  display: flex;
+}
+
+.archive-note-with-buttons:nth-child(2n) {
+  background-color: #FFA726;
+}
+
+.archive-note-with-buttons:nth-child(2n+1) {
+  background-color: lightgreen;
+}
+
+.archive-note-with-buttons {
+  height: auto;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  float: left;
+  word-wrap: break-word;
+  border-radius: 20px;
+  border: 3px solid yellow;
+  margin: 10px;
+  padding: 10px;
+}
+
+.archive-note-with-buttons:hover {
+  box-shadow: 0 10px 20px grey, 0 6px 6px lightslategray;
+}
+
+.archive-data {
+  font-size: 20px;
+  text-align: left;
+}
+
+.archive-time {
+  font-size: 10px;
+  text-align: end;
+  opacity: 0.5;
+}
