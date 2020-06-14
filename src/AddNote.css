@@ -89,10 +89,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.archive-note-with-buttons {
-  display: flex;
+  align-content: center;
 }
 
 .archive-note-with-buttons:nth-child(2n) {
@@ -104,7 +101,8 @@
 }
 
 .archive-note-with-buttons {
-  height: auto;
+  overflow-y: auto;
+  max-height: auto;
   width: 200px;
   display: flex;
   flex-direction: column;
