@@ -114,13 +114,19 @@ class AddNote extends React.Component {
 								</div>
 								<div className="edit-delete-wrapper">
 									<span className="edit-button" onClick={this.editFunc} id={id}>
-										Edit
+										<img
+											src="https://img.icons8.com/cotton/64/000000/edit--v1.png"
+											className="edit-button-img"
+										/>
 									</span>
 									<span
 										className="delete-button"
 										onClick={this.deleteFunc}
 										id={id}>
-										Delete
+										<img
+											src="https://img.icons8.com/fluent/48/000000/delete-sign.png"
+											className="delete-button-img"
+										/>
 									</span>
 								</div>
 							</div>
