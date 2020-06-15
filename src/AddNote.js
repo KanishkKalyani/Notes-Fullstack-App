@@ -47,8 +47,6 @@ class AddNote extends React.Component {
 				id: idCount,
 			});
 		}
-		console.log("State:");
-		console.log(this.state);
 		this.clearNotesArea();
 	};
 
@@ -71,7 +69,6 @@ class AddNote extends React.Component {
 			id: data.id,
 			edit: true,
 		});
-		console.log(index);
 	};
 
 	deleteFunc = event => {
@@ -113,7 +110,7 @@ class AddNote extends React.Component {
 									<div className="archive-time">{time}</div>
 								</div>
 								<div className="edit-delete-wrapper">
-									<span className="edit-button" onClick={this.editFunc} id={id}>
+									<span className="edit-button">
 										<img
 											src="https://img.icons8.com/cotton/64/000000/edit--v1.png"
 											className="edit-button-img"
@@ -121,10 +118,7 @@ class AddNote extends React.Component {
 											id={id}
 										/>
 									</span>
-									<span
-										className="delete-button"
-										onClick={this.deleteFunc}
-										id={id}>
+									<span className="delete-button">
 										<img
 											src="https://img.icons8.com/fluent/48/000000/delete-sign.png"
 											className="delete-button-img"
