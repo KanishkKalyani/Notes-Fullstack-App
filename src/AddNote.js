@@ -117,6 +117,8 @@ class AddNote extends React.Component {
 										<img
 											src="https://img.icons8.com/cotton/64/000000/edit--v1.png"
 											className="edit-button-img"
+											onClick={this.editFunc}
+											id={id}
 										/>
 									</span>
 									<span
@@ -126,6 +128,8 @@ class AddNote extends React.Component {
 										<img
 											src="https://img.icons8.com/fluent/48/000000/delete-sign.png"
 											className="delete-button-img"
+											onClick={this.deleteFunc}
+											id={id}
 										/>
 									</span>
 								</div>
