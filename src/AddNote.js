@@ -31,7 +31,7 @@ class AddNote extends React.Component {
 			this.setState({
 				AllData: data,
 			});
-		} else {
+		} else if (this.state.data !== "") {
 			var idCount = this.state.id;
 			idCount += 1;
 			var obj = {
@@ -75,14 +75,16 @@ class AddNote extends React.Component {
 	};
 
 	deleteFunc = event => {
-		var index = this.state.AllData.findIndex(
-			value => value.id === parseInt(event.target.id)
-		);
-		var data = this.state.AllData;
-		data.splice(index, 1);
-		this.setState({
-			AllData: data,
-		});
+		if (!this.state.edit) {
+			var index = this.state.AllData.findIndex(
+				value => value.id === parseInt(event.target.id)
+			);
+			var data = this.state.AllData;
+			data.splice(index, 1);
+			this.setState({
+				AllData: data,
+			});
+		}
 	};
 
 	render() {
@@ -91,14 +93,13 @@ class AddNote extends React.Component {
 				<div className="add-note-container">
 					<textarea
 						placeholder="Enter your note here..."
-						// rows={5}
 						className="enter-text"
 						value={this.state.data}
 						onChange={this.handleDataChange}
 					/>
-					<button onClick={this.save} className="save-button">
+					<span onClick={this.save} className="save-button">
 						SAVE
-					</button>
+					</span>
 				</div>
 
 				<div className="current-notes-body">
