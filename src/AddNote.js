@@ -1,5 +1,6 @@
 import React from "react";
 import "./AddNote.css";
+import CurrentNotes from "./CurrentNotes.js";
 
 class AddNote extends React.Component {
 	constructor(props) {
@@ -88,6 +89,7 @@ class AddNote extends React.Component {
 		return (
 			<>
 				<div className="add-note-container">
+					<h3>Kanishk's Notes</h3>
 					<textarea
 						placeholder="Enter your note here..."
 						className="enter-text"
@@ -98,39 +100,10 @@ class AddNote extends React.Component {
 						SAVE
 					</span>
 				</div>
-
-				<div className="current-notes-body">
-					{this.state.AllData.map(value => {
-						const { data, time, id } = value;
-
-						return (
-							<div className="archive-note-with-buttons">
-								<div>
-									<div className="archive-data">{data}</div>
-									<div className="archive-time">{time}</div>
-								</div>
-								<div className="edit-delete-wrapper">
-									<span className="edit-button">
-										<img
-											src="https://img.icons8.com/cotton/64/000000/edit--v1.png"
-											className="edit-button-img"
-											onClick={this.editFunc}
-											id={id}
-										/>
-									</span>
-									<span className="delete-button">
-										<img
-											src="https://img.icons8.com/fluent/48/000000/delete-sign.png"
-											className="delete-button-img"
-											onClick={this.deleteFunc}
-											id={id}
-										/>
-									</span>
-								</div>
-							</div>
-						);
-					})}
-				</div>
+				<CurrentNotes
+					AllData={this.state.AllData}
+					deleteFunc={this.deleteFunc}
+					editFunc={this.editFunc}></CurrentNotes>
 			</>
 		);
 	}
