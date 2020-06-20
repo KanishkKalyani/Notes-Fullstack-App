@@ -18,15 +18,15 @@ class AddNote extends React.Component {
 	}
 
 	handleSearchChange = event => {
-		this.setState({ search: event.target.value });
-
 		var searchedArray = this.state.temp.filter(value =>
 			value.title.includes(event.target.value)
 		);
 
 		this.setState({
+			search: event.target.value,
 			AllData: searchedArray,
 		});
+
 		if (event.target.value === "") {
 			let temp = this.state.temp;
 			this.setState({

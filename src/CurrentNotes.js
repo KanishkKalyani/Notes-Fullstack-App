@@ -6,6 +6,7 @@ class CurrentNotes extends React.Component {
 		super(props);
 		this.state = {};
 	}
+
 	render() {
 		return (
 			<div className="current-notes-body">
