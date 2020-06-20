@@ -1,5 +1,6 @@
 import React from "react";
 import "./CurrentNotes.css";
+import Highlighter from "react-highlight-words";
 
 class CurrentNotes extends React.Component {
 	constructor(props) {
@@ -12,11 +13,17 @@ class CurrentNotes extends React.Component {
 			<div className="current-notes-body">
 				{this.props.AllData.map(value => {
 					const { title, data, time, id } = value;
-
 					return (
 						<div className="archive-note-with-buttons">
 							<div>
-								<div className="title-data">{title}</div>
+								<div className="title-wrapper">
+									<Highlighter
+										highlightClassName="YourHighlightClass title-data"
+										searchWords={[this.props.search]}
+										autoEscape={true}
+										textToHighlight={title}
+									/>
+								</div>
 								<div className="archive-data">{data}</div>
 								<div className="archive-time">{time}</div>
 							</div>

@@ -18,18 +18,19 @@ class AddNote extends React.Component {
 	}
 
 	handleSearchChange = event => {
-		var searchedArray = this.state.temp.filter(value =>
-			value.title.includes(event.target.value)
-		);
+		if (event.target.value !== "") {
+			var searchedArray = this.state.temp.filter(value =>
+				value.title.includes(event.target.value)
+			);
 
-		this.setState({
-			search: event.target.value,
-			AllData: searchedArray,
-		});
-
-		if (event.target.value === "") {
+			this.setState({
+				search: event.target.value,
+				AllData: searchedArray,
+			});
+		} else {
 			let temp = this.state.temp;
 			this.setState({
+				search: "",
 				AllData: temp,
 			});
 		}
@@ -83,7 +84,7 @@ class AddNote extends React.Component {
 
 	clearNotesArea = () => {
 		this.setState({
-			search: "",
+			// search: "",
 			title: "",
 			data: "",
 			time: "",
@@ -151,6 +152,7 @@ class AddNote extends React.Component {
 					</span>
 				</div>
 				<CurrentNotes
+					search={this.state.search}
 					AllData={this.state.AllData}
 					deleteFunc={this.deleteFunc}
 					editFunc={this.editFunc}></CurrentNotes>

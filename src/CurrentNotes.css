@@ -92,11 +92,19 @@
   box-shadow: 0 10px 20px grey, 0 6px 6px lightslategray;
 }
 
+.title-wrapper {
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+  font-weight: bolder;
+  font-size: 15px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
 .title-data {
   font-size: 15px;
-  text-align: center;
   font-weight: bolder;
-  text-transform: uppercase;
   text-decoration: underline;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
