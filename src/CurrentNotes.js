@@ -10,11 +10,12 @@ class CurrentNotes extends React.Component {
 		return (
 			<div className="current-notes-body">
 				{this.props.AllData.map(value => {
-					const { data, time, id } = value;
+					const { title, data, time, id } = value;
 
 					return (
 						<div className="archive-note-with-buttons">
 							<div>
+								<div className="title-data">{title}</div>
 								<div className="archive-data">{data}</div>
 								<div className="archive-time">{time}</div>
 							</div>

@@ -6,6 +6,9 @@ class AddNote extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			temp: [],
+			search: "",
+			title: "",
 			edit: false,
 			data: "",
 			time: "",
@@ -14,45 +17,76 @@ class AddNote extends React.Component {
 		};
 	}
 
+	handleSearchChange = event => {
+		this.setState({ search: event.target.value });
+
+		var searchedArray = this.state.temp.filter(value =>
+			value.title.includes(event.target.value)
+		);
+		this.setState({
+			AllData: searchedArray,
+		});
+		if (event.target.value === "") {
+			let temp = this.state.temp;
+			this.setState({
+				AllData: temp,
+			});
+		}
+	};
+
 	handleDataChange = event => {
 		this.setState({ data: event.target.value });
 	};
 
-	save = () => {
-		if (this.state.edit) {
-			var index = this.state.AllData.findIndex(
-				value => value.id === parseInt(this.state.id)
-			);
+	handleTitleChange = event => {
+		this.setState({ title: event.target.value });
+	};
 
-			var data = this.state.AllData;
+	save = () => {
+		if (this.state.edit && this.state.data !== "" && this.state.title !== "") {
+			let data = this.state.temp;
+			console.log("Saving Edit Data Time", this.state.temp);
+
+			var index = data.findIndex(value => value.id === parseInt(this.state.id));
+
+			data[index].title = this.state.title;
 			data[index].data = this.state.data;
 			data[index].time = this.state.time;
 			data[index].edit = false;
 
 			this.setState({
+				temp: data,
 				AllData: data,
 			});
-		} else if (this.state.data !== "") {
+			this.clearNotesArea();
+		} else if (this.state.data !== "" && this.state.title !== "") {
 			var idCount = this.state.id;
 			idCount += 1;
 			var obj = {
+				title: this.state.title,
 				data: this.state.data,
 				time: new Date().toLocaleString().replace(",", "").replace(/:.. /, " "),
 				id: idCount,
 			};
-			var data = this.state.AllData;
+			var data = [];
+			data = this.state.temp;
 			data.unshift(obj);
+			console.log("Saving in Array", data);
 
 			this.setState({
 				AllData: data,
+				temp: data,
 				id: idCount,
 			});
+			this.clearNotesArea();
 		}
-		this.clearNotesArea();
+		console.log("state", this.state);
 	};
 
 	clearNotesArea = () => {
 		this.setState({
+			search: "",
+			title: "",
 			data: "",
 			time: "",
 			edit: false,
@@ -60,11 +94,13 @@ class AddNote extends React.Component {
 	};
 
 	editFunc = event => {
-		var index = this.state.AllData.findIndex(
+		var index = this.state.temp.findIndex(
 			value => value.id === parseInt(event.target.id)
 		);
-		var data = this.state.AllData[index];
+		var data = this.state.temp[index];
 		this.setState({
+			search: "",
+			title: data.title,
 			data: data.data,
 			time: data.time,
 			id: data.id,
@@ -74,12 +110,14 @@ class AddNote extends React.Component {
 
 	deleteFunc = event => {
 		if (!this.state.edit) {
-			var index = this.state.AllData.findIndex(
+			var index = this.state.temp.findIndex(
 				value => value.id === parseInt(event.target.id)
 			);
-			var data = this.state.AllData;
+			var data = this.state.temp;
 			data.splice(index, 1);
 			this.setState({
+				search: "",
+				temp: data,
 				AllData: data,
 			});
 		}
@@ -90,6 +128,20 @@ class AddNote extends React.Component {
 			<>
 				<div className="add-note-container">
 					<h3>Kanishk's Notes</h3>
+					<div className="search-wrapper">
+						<textarea
+							placeholder="Search by Title..."
+							className="search-bar"
+							value={this.state.search}
+							onChange={this.handleSearchChange}
+						/>
+					</div>
+					<textarea
+						placeholder="Title..."
+						className="enter-title"
+						value={this.state.title}
+						onChange={this.handleTitleChange}
+					/>
 					<textarea
 						placeholder="Enter your note here..."
 						className="enter-text"
