@@ -23,6 +23,7 @@ class AddNote extends React.Component {
 		var searchedArray = this.state.temp.filter(value =>
 			value.title.includes(event.target.value)
 		);
+
 		this.setState({
 			AllData: searchedArray,
 		});
@@ -45,7 +46,6 @@ class AddNote extends React.Component {
 	save = () => {
 		if (this.state.edit && this.state.data !== "" && this.state.title !== "") {
 			let data = this.state.temp;
-			console.log("Saving Edit Data Time", this.state.temp);
 
 			var index = data.findIndex(value => value.id === parseInt(this.state.id));
 
@@ -71,7 +71,6 @@ class AddNote extends React.Component {
 			var data = [];
 			data = this.state.temp;
 			data.unshift(obj);
-			console.log("Saving in Array", data);
 
 			this.setState({
 				AllData: data,
@@ -80,7 +79,6 @@ class AddNote extends React.Component {
 			});
 			this.clearNotesArea();
 		}
-		console.log("state", this.state);
 	};
 
 	clearNotesArea = () => {
