@@ -1,0 +1,125 @@
+.edit-button {
+	width: 40px;
+	border-radius: 50%;
+	margin: 2px;
+}
+
+.delete-button {
+	border-radius: 50%;
+	padding: 8px 8px;
+	margin: 2px;
+}
+
+.edit-button,
+.delete-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.delete-button-img,
+.edit-button-img {
+	width: 25px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.edit-button:hover {
+	background-color: rgb(35, 177, 0);
+	opacity: 0.8;
+}
+
+.delete-button:hover {
+	background-color: #ff0000;
+	opacity: 0.8;
+}
+
+.edit-delete-wrapper {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.current-notes-body {
+	width: 100%;
+	min-height: 60%;
+	background-image: linear-gradient(white, lightblue);
+	display: flex;
+	justify-content: center;
+	align-items: flex-start !important;
+	flex-wrap: wrap;
+}
+
+.archive-note-with-buttons:nth-child(n) {
+	background-color: #f7d198;
+}
+
+.archive-note-with-buttons:nth-child(2n) {
+	background-color: rgb(179, 243, 195);
+}
+
+.archive-note-with-buttons:nth-child(3n) {
+	background-color: rgb(229, 173, 236);
+}
+
+.archive-note-with-buttons:nth-child(4n) {
+	background-color: rgb(238, 236, 144);
+}
+
+.archive-note-with-buttons:nth-child(5n) {
+	background-color: rgb(238, 153, 153);
+}
+
+.archive-note-with-buttons:nth-child(6n) {
+	background-color: rgb(144, 174, 238);
+}
+
+.archive-note-with-buttons {
+	overflow-y: auto;
+	max-height: 400px;
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	float: left;
+	word-wrap: break-word;
+	border-radius: 20px;
+	margin: 10px;
+	padding: 10px;
+	padding-bottom: 0%;
+}
+
+.archive-note-with-buttons:hover {
+	box-shadow: 0 10px 20px grey, 0 6px 6px lightslategray;
+}
+
+.title-wrapper {
+	display: flex;
+	justify-content: center;
+	color: #0a0042;
+	font-weight: bolder;
+	font-size: 20px;
+	text-align: center;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.title-data {
+	background-color: red;
+	color: white;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.archive-data {
+	font-size: 15px;
+	text-align: left;
+	margin: 10px;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.archive-time {
+	font-size: 10px;
+	text-align: end;
+	opacity: 0.5;
+}
