@@ -1,8 +1,6 @@
 # Notes App Using React
 
-## GH Pages Link - https://kanishkkalyani.github.io/Notes-React-App/ (Frontend only)
-
-## Heroku Link - (Fullstack)
+## Heroku Link - https://boiling-fjord-17537.herokuapp.com/
 
 ## Features
 
