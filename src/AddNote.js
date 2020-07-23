@@ -16,7 +16,7 @@ class AddNote extends React.Component {
 			id: "",
 			AllData: [],
 		};
-		axios.get("/all-notes").then(resp => {
+		axios.get("all-notes").then(resp => {
 			this.setState({ AllData: resp.data.notes, temp: resp.data.notes });
 		});
 	}
@@ -51,7 +51,7 @@ class AddNote extends React.Component {
 	save = () => {
 		if (this.state.edit && this.state.data !== "" && this.state.title !== "") {
 			axios
-				.put("/update-note", {
+				.put("update-note", {
 					_id: this.state.id,
 					title: this.state.title,
 					data: this.state.data,
@@ -72,7 +72,7 @@ class AddNote extends React.Component {
 				});
 		} else if (this.state.data !== "" && this.state.title !== "") {
 			axios
-				.post("/add-note", {
+				.post("add-note", {
 					title: this.state.title,
 					data: this.state.data,
 					time: new Date()
@@ -81,7 +81,7 @@ class AddNote extends React.Component {
 						.replace(/:.. /, " "),
 				})
 				.then(response => {
-					axios.get("/all-notes").then(resp => {
+					axios.get("all-notes").then(resp => {
 						let data = resp.data.notes;
 
 						this.setState({
@@ -126,7 +126,7 @@ class AddNote extends React.Component {
 		const del = event.target.id;
 		if (!this.state.edit) {
 			axios
-				.delete(`/delete-note/${del}`)
+				.delete(`delete-note/${del}`)
 				.then(() => {
 					var index = this.state.temp.findIndex(value => value._id === del);
 					var data = this.state.temp;
