@@ -21,6 +21,6 @@
 	"scripts": {
 		"start": "node ./index.js",
 		"start:dev": "nodemon  --watch server ./index.js",
-		"heroku-postbuild": "cd client && yarn run build && yarn start"
+		"heroku-postbuild": "cd client && yarn && yarn run build"
 	}
 }
