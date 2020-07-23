@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const notesRoutes = require("./server/routes/notes.route");
 
-const isDevelopment = NODE_ENV === "development";
+const isDevelopment = process.env.NODE_ENV === "development";
 
 if (isDevelopment) {
 	app.use(morgan("dev"));
