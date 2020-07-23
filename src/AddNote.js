@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import "./AddNote.css";
 import CurrentNotes from "./CurrentNotes.js";
 
@@ -12,9 +13,12 @@ class AddNote extends React.Component {
 			edit: false,
 			data: "",
 			time: "",
-			id: 0,
+			id: "",
 			AllData: [],
 		};
+		axios.get("http://localhost:8000/api/all-notes").then(resp => {
+			this.setState({ AllData: resp.data.notes, temp: resp.data.notes });
+		});
 	}
 
 	handleSearchChange = event => {
@@ -46,39 +50,50 @@ class AddNote extends React.Component {
 
 	save = () => {
 		if (this.state.edit && this.state.data !== "" && this.state.title !== "") {
-			let data = this.state.temp;
+			axios
+				.put("http://localhost:8000/api/update-note", {
+					_id: this.state.id,
+					title: this.state.title,
+					data: this.state.data,
+				})
+				.then(() => {
+					let data = this.state.temp;
+					var index = data.findIndex(value => value._id === this.state.id);
 
-			var index = data.findIndex(value => value.id === parseInt(this.state.id));
+					data[index].title = this.state.title;
+					data[index].data = this.state.data;
+					data[index].time = this.state.time;
 
-			data[index].title = this.state.title;
-			data[index].data = this.state.data;
-			data[index].time = this.state.time;
-			data[index].edit = false;
-
-			this.setState({
-				temp: data,
-				AllData: data,
-			});
-			this.clearNotesArea();
+					this.setState({
+						temp: data,
+						AllData: data,
+					});
+					this.clearNotesArea();
+				});
 		} else if (this.state.data !== "" && this.state.title !== "") {
-			var idCount = this.state.id;
-			idCount += 1;
-			var obj = {
-				title: this.state.title,
-				data: this.state.data,
-				time: new Date().toLocaleString().replace(",", "").replace(/:.. /, " "),
-				id: idCount,
-			};
-			var data = [];
-			data = this.state.temp;
-			data.unshift(obj);
+			axios
+				.post("http://localhost:8000/api/add-note", {
+					title: this.state.title,
+					data: this.state.data,
+					time: new Date()
+						.toLocaleString()
+						.replace(",", "")
+						.replace(/:.. /, " "),
+				})
+				.then(response => {
+					axios.get("http://localhost:8000/api/all-notes").then(resp => {
+						let data = resp.data.notes;
 
-			this.setState({
-				AllData: data,
-				temp: data,
-				id: idCount,
-			});
-			this.clearNotesArea();
+						this.setState({
+							AllData: data,
+							temp: data,
+						});
+						this.clearNotesArea();
+					});
+				})
+				.catch(error => {
+					console.log("ERROR", error);
+				});
 		}
 	};
 
@@ -94,7 +109,7 @@ class AddNote extends React.Component {
 
 	editFunc = event => {
 		var index = this.state.temp.findIndex(
-			value => value.id === parseInt(event.target.id)
+			value => value._id === event.target.id
 		);
 		var data = this.state.temp[index];
 		this.setState({
@@ -102,23 +117,29 @@ class AddNote extends React.Component {
 			title: data.title,
 			data: data.data,
 			time: data.time,
-			id: data.id,
+			id: data._id,
 			edit: true,
 		});
 	};
 
 	deleteFunc = event => {
+		const del = event.target.id;
 		if (!this.state.edit) {
-			var index = this.state.temp.findIndex(
-				value => value.id === parseInt(event.target.id)
-			);
-			var data = this.state.temp;
-			data.splice(index, 1);
-			this.setState({
-				search: "",
-				temp: data,
-				AllData: data,
-			});
+			axios
+				.delete(`http://localhost:8000/api/delete-note/${del}`)
+				.then(() => {
+					var index = this.state.temp.findIndex(value => value._id === del);
+					var data = this.state.temp;
+					data.splice(index, 1);
+					this.setState({
+						search: "",
+						temp: data,
+						AllData: data,
+					});
+				})
+				.catch(err => {
+					console.log("ERROR", err);
+				});
 		}
 	};
 
