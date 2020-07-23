@@ -20,9 +20,9 @@ app.use(cors());
 
 app.use("/api", notesRoutes);
 
-if (process.env.NODE_ENV === "production") {
-	app.use(express.static("build"));
-}
+// if (process.env.NODE_ENV === "production") {
+// 	app.use(express.static("build"));
+// }
 
 mongoose
 	.connect(process.env.DATABASE_URL, {
