@@ -8,6 +8,8 @@ const notesRoutes = require("./server/routes/notes.route");
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
+const activePort = process.env.PORT || 8000;
+
 if (isDevelopment) {
 	app.use(morgan("dev"));
 } else {
@@ -43,8 +45,10 @@ mongoose
 		useFindAndModify: true,
 	})
 	.then(() => {
-		app.listen(process.env.PORT || 8000, () => {
-			console.log(`DB Connected and the server is running at 8000 port.`);
+		app.listen(activePort, () => {
+			console.log(
+				`DB Connected and the server is running at ${activePort} port.`
+			);
 		});
 	})
 	.catch(err => {
