@@ -20,10 +20,6 @@ app.use(cors());
 
 app.use("/api", notesRoutes);
 
-app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});
-
 mongoose
 	.connect(process.env.DATABASE_URL, {
 		useCreateIndex: true,
