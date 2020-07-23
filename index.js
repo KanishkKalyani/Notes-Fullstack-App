@@ -6,7 +6,13 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const notesRoutes = require("./server/routes/notes.route");
 
-app.use(morgan("dev"));
+const isDevelopment = NODE_ENV === "development";
+
+if (isDevelopment) {
+	app.use(morgan("dev"));
+} else {
+	app.use(morgan("combined"));
+}
 
 app.use(bodyParser.json());
 
@@ -16,13 +22,18 @@ app.use(
 	})
 );
 
-app.use(cors());
+if (isDevelopment) {
+	// production
+	app.use(cors());
+} else {
+	app.use(cors({ origin: CLIENT_URL, optionsSuccessStatus: 200 }));
+}
 
 app.use("/api", notesRoutes);
 
-// if (process.env.NODE_ENV === "production") {
-// 	app.use(express.static("build"));
-// }
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
 mongoose
 	.connect(process.env.DATABASE_URL, {
