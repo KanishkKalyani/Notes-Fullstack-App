@@ -1,6 +1,9 @@
 import React from "react";
+import axios from "axios";
 import "./App.css";
 import AddNote from "./AddNote.js";
+
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
 
 class App extends React.Component {
 	constructor(props) {
