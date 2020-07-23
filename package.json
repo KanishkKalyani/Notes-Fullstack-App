@@ -1,6 +1,10 @@
 {
 	"name": "notes-app",
 	"version": "0.1.0",
+	"description": "An educational project",
+	"main": "index.js",
+	"repository": "https://github.com/KanishkKalyani/Notes-Fullstack-App.git",
+	"author": "Kanishk Kalyani",
 	"license": "MIT",
 	"dependencies": {
 		"@testing-library/jest-dom": "^4.2.4",
