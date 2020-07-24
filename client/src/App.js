@@ -4,6 +4,7 @@ import "./App.css";
 import AddNote from "./AddNote.js";
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
+console.log(process.env.REACT_APP_SERVER_URL);
 
 class App extends React.Component {
 	constructor(props) {

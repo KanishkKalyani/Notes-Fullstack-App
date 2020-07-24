@@ -24,33 +24,32 @@ app.use(
 	})
 );
 
-if (isDevelopment) {
-	// production
-	// app.use(cors({ origin: CLIENT_URL, optionsSuccessStatus: 200 }));
-	app.use(cors());
-}
-
 // if (isDevelopment) {
-// production
-// app.use(cors());
-// } else {
-// 	app.use(cors({ origin: process.env.CLIENT_URL, optionsSuccessStatus: 200 }));
+// 	// production
+// 	// app.use(cors({ origin: CLIENT_URL, optionsSuccessStatus: 200 }));
+// 	app.use(cors());
 // }
+
+if (isDevelopment) {
+	app.use(cors());
+} else {
+	app.use(cors({ origin: process.env.CLIENT_URL, optionsSuccessStatus: 200 }));
+}
 
 app.use("/api", notesRoutes);
 
-// if (process.env.NODE_ENV === "production") {
-// 	// Serve any static files
-// 	app.use(express.static(path.join(__dirname, "client/build")));
-// 	// Handle React routing, return all requests to React app
-// 	app.get("*", function (req, res) {
-// 		res.sendFile(path.join(__dirname, "client/build", "index.html"));
-// 	});
-// }
+if (process.env.NODE_ENV === "production") {
+	// Serve any static files
+	app.use(express.static(path.join(__dirname, "client/build")));
+	// Handle React routing, return all requests to React app
+	app.get("*", function (req, res) {
+		res.sendFile(path.join(__dirname, "client/build", "index.html"));
+	});
+}
 
-app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+// 	res.sendFile(path.join(__dirname + "/client/build/index.html"));
+// });
 
 mongoose
 	.connect(process.env.DATABASE_URL, {
