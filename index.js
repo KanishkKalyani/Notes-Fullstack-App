@@ -26,10 +26,16 @@ app.use(
 
 if (isDevelopment) {
 	// production
+	// app.use(cors({ origin: CLIENT_URL, optionsSuccessStatus: 200 }));
 	app.use(cors());
-} else {
-	app.use(cors({ origin: process.env.CLIENT_URL, optionsSuccessStatus: 200 }));
 }
+
+// if (isDevelopment) {
+// production
+// app.use(cors());
+// } else {
+// 	app.use(cors({ origin: process.env.CLIENT_URL, optionsSuccessStatus: 200 }));
+// }
 
 app.use("/api", notesRoutes);
 
