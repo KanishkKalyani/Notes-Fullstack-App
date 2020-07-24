@@ -6,25 +6,21 @@
 	"repository": "https://github.com/KanishkKalyani/Notes-Fullstack-App.git",
 	"author": "Kanishk Kalyani",
 	"license": "MIT",
+	"scripts": {
+		"start": "node ./index.js",
+		"start:dev": "nodemon  --watch server ./index.js",
+		"heroku-postbuild": "cd client && yarn && yarn run build"
+	},
 	"dependencies": {
-		"@testing-library/jest-dom": "^4.2.4",
-		"@testing-library/react": "^9.5.0",
-		"@testing-library/user-event": "^7.2.1",
 		"axios": "^0.19.2",
 		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"mongoose": "^5.9.25",
-		"morgan": "^1.10.0",
-		"react": "^16.13.1",
-		"react-dom": "^16.13.1",
-		"react-highlight-words": "^0.16.0",
-		"react-scripts": "3.4.1"
+		"morgan": "^1.10.0"
 	},
-	"scripts": {
-		"start": "node ./index.js",
-		"start:dev": "nodemon  --watch server ./index.js",
-		"heroku-postbuild": "cd client && yarn && yarn run build"
+	"devDependencies": {
+		"nodemon": "^2.0.4"
 	}
 }
