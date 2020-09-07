@@ -1,4 +1,4 @@
-# Notes App Using React
+# Notes App
 
 ## Heroku Link - https://boiling-fjord-17537.herokuapp.com/
 
